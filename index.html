@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolão da Copa - Brasil x Japão</title>
+    <meta name="description" content="Faça seu palpite para o jogo Brasil x Japão no nosso bolão oficial da Copa!">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal (Banner) -->
+    <header class="hero-banner">
+        <div class="hero-content">
+            <p class="hero-tagline">Grande Clássico da Copa</p>
+            <h1 class="hero-title">BOLÃO DA COPA</h1>
+            <p class="hero-subtitle">Deixe o seu palpite para o emocionante confronto entre Brasil e Japão e dispute a liderança com a galera!</p>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-container">
+
+        <!-- Seção 1: Enviar Palpite -->
+        <section class="glass-card">
+            <h2 class="card-title">
+                <span class="emoji">⚽</span> Registrar Palpite
+            </h2>
+            
+            <!-- Alertas de Status -->
+            <div id="alert-success" class="alert alert-success">
+                <span class="alert-icon">✅</span>
+                <span class="alert-message">Seu palpite foi registrado com sucesso!</span>
+            </div>
+            
+            <div id="alert-error" class="alert alert-error">
+                <span class="alert-icon">⚠️</span>
+                <span class="alert-message">Ocorreu um erro ao enviar seu palpite. Tente novamente.</span>
+            </div>
+
+            <div id="alert-info" class="alert alert-info">
+                <span class="alert-icon">ℹ️</span>
+                <span class="alert-message">Prazo encerrado para palpites.</span>
+            </div>
+
+            <form id="guess-form">
+                <!-- Placar -->
+                <div class="match-card">
+                    
+                    <!-- Brasil -->
+                    <div class="team">
+                        <div class="flag-wrapper">
+                            <img src="https://flagcdn.com/br.svg" alt="Bandeira do Brasil" class="flag-img">
+                        </div>
+                        <span class="team-name">BRASIL</span>
+                        <input type="number" id="goals-brazil" class="score-input" min="0" max="99" required placeholder="0" aria-label="Gols do Brasil">
+                    </div>
+
+                    <!-- VS -->
+                    <div class="versus">VS</div>
+
+                    <!-- Japão -->
+                    <div class="team">
+                        <div class="flag-wrapper">
+                            <img src="https://flagcdn.com/jp.svg" alt="Bandeira do Japão" class="flag-img">
+                        </div>
+                        <span class="team-name">JAPÃO</span>
+                        <input type="number" id="goals-japan" class="score-input" min="0" max="99" required placeholder="0" aria-label="Gols do Japão">
+                    </div>
+
+                </div>
+
+                <!-- Nome do Participante -->
+                <div class="form-group">
+                    <label for="participant-name" class="form-label">Nome do Participante</label>
+                    <input type="text" id="participant-name" class="name-input" placeholder="Digite seu nome ou apelido" required minlength="2" maxlength="50">
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" id="btn-submit" class="btn-submit">
+                    <div class="loader"></div>
+                    <span>Enviar Palpite 🚀</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Seção 2: Mural de Palpites & Estatísticas -->
+        <section class="glass-card">
+            <h2 class="card-title">
+                <span class="emoji">📊</span> Palpites da Galera
+            </h2>
+
+            <!-- Lista de Palpites -->
+            <div id="guesses-list" class="guesses-list-container">
+                <!-- Os palpites serão injetados dinamicamente via JS -->
+                <div class="empty-state">Carregando palpites...</div>
+            </div>
+
+            <!-- Painel de Estatísticas -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span id="stat-total" class="stat-val">0</span>
+                    <span class="stat-label">Palpites</span>
+                </div>
+                <div class="stat-item">
+                    <span id="stat-avg-brazil" class="stat-val brazil">0</span>
+                    <span class="stat-label">Média BR</span>
+                </div>
+                <div class="stat-item">
+                    <span id="stat-avg-japan" class="stat-val japan">0</span>
+                    <span class="stat-label">Média JP</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <!-- Supabase JS Client via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Configurações do Supabase -->
+    <script src="config.js"></script>
+    <!-- Lógica de Funcionamento do App -->
+    <script src="app.js"></script>
+</body>
+</html>

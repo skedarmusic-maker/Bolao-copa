@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary-green: #0b4f30;
+    --primary-green-light: #166534;
+    --accent-yellow: #ffd100;
+    --accent-yellow-hover: #e6bd00;
+    --accent-blue: #002f6c;
+    --accent-blue-light: #1d4ed8;
+    --bg-dark: #060907;
+    --bg-card: rgba(11, 79, 48, 0.15);
+    --bg-card-hover: rgba(11, 79, 48, 0.25);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-accent: rgba(255, 209, 0, 0.2);
+    --text-white: #ffffff;
+    --text-muted: #a3a3a3;
+    --glow-shadow: 0 0 20px rgba(255, 209, 0, 0.2);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(11, 79, 48, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 47, 108, 0.25) 0%, transparent 40%);
+}
+
+/* Background Banner com a Imagem Fornecida */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background-image: url('capa.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(6, 9, 7, 0.3) 0%, rgba(6, 9, 7, 0.95) 85%, var(--bg-dark) 100%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 0 20px;
+    margin-top: 50px;
+}
+
+.hero-tagline {
+    background: linear-gradient(90deg, var(--accent-yellow), #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Container Principal */
+.main-container {
+    max-width: 1200px;
+    margin: -60px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media (min-width: 992px) {
+    .main-container {
+        grid-template-columns: 1.1fr 0.9fr;
+    }
+}
+
+/* Estilo Glassmorphism para os Cards */
+.glass-card {
+    background: rgba(15, 23, 18, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 30px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 209, 0, 0.3), transparent);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 209, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-title .emoji {
+    font-size: 1.8rem;
+}
+
+/* Seção de Palpite */
+.match-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(11, 79, 48, 0.1);
+    border: 1px solid rgba(11, 79, 48, 0.2);
+    border-radius: 20px;
+    padding: 25px 15px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.flag-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--border-glass);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-dark);
+}
+
+.flag-img {
+    width: 105%;
+    height: 105%;
+    object-fit: cover;
+}
+
+.team-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+/* Estilização para o input de Gols */
+.score-input {
+    width: 75px;
+    height: 75px;
+    border-radius: 16px;
+    border: 2px solid var(--border-glass);
+    background: rgba(6, 9, 7, 0.8);
+    color: var(--text-white);
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    outline: none;
+    transition: var(--transition);
+}
+
+.score-input:focus {
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 15px rgba(255, 209, 0, 0.25);
+    background: rgba(11, 79, 48, 0.15);
+}
+
+/* Remover flechas dos inputs numéricos */
+.score-input::-webkit-outer-spin-button,
+.score-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.score-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.versus {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-yellow);
+    text-shadow: 0 0 10px rgba(255, 209, 0, 0.4);
+    padding: 0 10px;
+    align-self: center;
+    margin-top: 40px; /* Alinhar com a altura dos inputs */
+}
+
+/* Input do Nome */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.name-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 2px solid var(--border-glass);
+    background: rgba(6, 9, 7, 0.8);
+    color: var(--text-white);
+    font-size: 1.1rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.name-input:focus {
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 15px rgba(255, 209, 0, 0.15);
+    background: rgba(11, 79, 48, 0.05);
+}
+
+/* Botão Enviar */
+.btn-submit {
+    width: 100%;
+    padding: 18px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent-yellow) 0%, #d4af37 100%);
+    color: #052e16; /* Verde bem escuro para legibilidade */
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--glow-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #ffe047 0%, var(--accent-yellow) 100%);
+    box-shadow: 0 0 25px rgba(255, 209, 0, 0.35);
+}
+
+.btn-submit:active {
+    transform: translateY(1px);
+}
+
+.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Lista de Palpites */
+.guesses-list-container {
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Personalizar barra de rolagem */
+.guesses-list-container::-webkit-scrollbar {
+    width: 6px;
+}
+.guesses-list-container::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+}
+.guesses-list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 209, 0, 0.2);
+    border-radius: 10px;
+}
+.guesses-list-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 209, 0, 0.4);
+}
+
+.guess-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+    animation: slideIn 0.4s ease-out;
+}
+
+.guess-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 209, 0, 0.1);
+    transform: translateX(4px);
+}
+
+.guess-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.guess-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.guess-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.guess-score {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(6, 9, 7, 0.6);
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.guess-score-num {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.guess-score-num.brazil {
+    color: var(--accent-yellow);
+}
+
+.guess-score-num.japan {
+    color: #ef4444; /* Vermelho pro Japão */
+}
+
+.guess-score-x {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+/* Painel de Estatísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-val {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-yellow);
+    margin-bottom: 4px;
+}
+
+.stat-val.brazil {
+    color: var(--accent-yellow);
+}
+
+.stat-val.japan {
+    color: #ef4444;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+/* Alerts de Sucesso / Erro */
+.alert {
+    padding: 15px 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Estado de Loading */
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(5, 46, 22, 0.3);
+    border-radius: 50%;
+    border-top-color: #052e16;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading .loader {
+    display: inline-block;
+}
+.loading span {
+    display: none;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px 0;
+    font-style: italic;
+}
